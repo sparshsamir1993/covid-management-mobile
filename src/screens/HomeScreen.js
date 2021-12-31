@@ -1,10 +1,20 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, Button } from "react-native";
+import { globalStyles } from "../../styles";
+import Login from "../components/auth/Login";
+import Register from "../components/auth/Register";
 
-const HomeScreen = () => {
+
+const HomeScreen = ({ navigation }) => {
+    const [isLogin, setIsLogin] = useState(true);
+
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Sparsh</Text>
+        <View style={globalStyles.container}>
+
+            {isLogin && <Login setIsLogin={setIsLogin} />}
+            {!isLogin && <Register setIsLogin={setIsLogin} />}
+
         </View>
     )
 }
@@ -14,9 +24,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontSize: 30
     },
-    container: {
-        marginLeft: 5
-    }
 })
 
 export default HomeScreen;
